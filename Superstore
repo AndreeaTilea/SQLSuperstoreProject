@@ -1,0 +1,56 @@
+# How many customers are in each region?
+SELECT
+  Region,
+  count(*) AS number_of_customers
+FROM
+  `mindful-world-348612.Superstore.customer`
+GROUP BY
+  Region
+ORDER BY
+  number_of_customers DESC;
+
+# Find the region with most customers
+SELECT
+  Region,
+  count(*) as number_of_customers,
+FROM
+  `mindful-world-348612.Superstore.customer`
+GROUP BY
+  Region
+ORDER BY
+  number_of_customers DESC limit 1;
+
+# What is the most profitable product category? 
+SELECT
+  Category,
+  SUM(ROUND(sales)) AS total_profit
+FROM
+  `mindful-world-348612.Superstore.customer`
+GROUP BY
+  Category
+ORDER BY
+  total_profit DESC;
+
+# What is the most profitable product sub category? 
+SELECT
+  Category,
+  Sub_Category,
+  SUM(ROUND(sales)) AS total_profit
+FROM
+  `mindful-world-348612.Superstore.customer`
+GROUP BY
+  Category, Sub_Category
+ORDER BY
+  total_profit DESC;
+  
+# The names of the customers that had the biggest purchases and the subcategory of what they bought.
+SELECT
+  Customer_Name,
+  Sub_Category,
+  SUM(ROUND(Sales)) as total_amount_spent
+FROM
+  `mindful-world-348612.Superstore.customer`
+GROUP BY
+  Customer_Name, Sub_Category
+ORDER BY 
+  total_amount_spent DESC LIMIT 10;
